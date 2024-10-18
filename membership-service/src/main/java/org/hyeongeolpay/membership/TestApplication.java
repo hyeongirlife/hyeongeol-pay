@@ -1,4 +1,4 @@
-package org.example;
+package org.hyeongeolpay.membership;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
