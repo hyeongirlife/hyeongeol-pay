@@ -19,7 +19,10 @@ dependencies {
     // Spring Boot
     implementation("org.springframework.boot:spring-boot-starter")
     implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation ("org.springframework.boot:spring-boot-starter-validation")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    implementation("javax.persistence:javax.persistence-api:2.2")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 
     // Lombok
     compileOnly("org.projectlombok:lombok")
@@ -28,6 +31,12 @@ dependencies {
     // JUnit
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
+
+    // Swagger
+    implementation("io.springfox:springfox-boot-starter:3.0.0")
+
+    runtimeOnly("com.h2database:h2")
+
 }
 
 tasks.test {
