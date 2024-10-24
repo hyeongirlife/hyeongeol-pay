@@ -5,6 +5,7 @@ import org.hyeongeolpay.membership.application.port.in.RegisterMembershipCommand
 import org.hyeongeolpay.membership.application.port.in.RegisterMembershipUseCase;
 import org.hyeongeolpay.membership.common.WebAdapter;
 import org.hyeongeolpay.membership.domain.Membership;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,4 +27,6 @@ public class RegisterMembershipController {
         return registerMembershipUseCase.registerMembership(command);
 
     }
+
+
 }

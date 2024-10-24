@@ -1,13 +1,14 @@
 package org.hyeongeolpay.membership.adapter.out.persistance;
 
 import lombok.RequiredArgsConstructor;
+import org.hyeongeolpay.membership.application.port.out.FindMembershipPort;
 import org.hyeongeolpay.membership.application.port.out.RegisterMembershipPort;
 import org.hyeongeolpay.membership.common.PersistenceAdapter;
 import org.hyeongeolpay.membership.domain.Membership;
 
 @PersistenceAdapter
 @RequiredArgsConstructor
-public class MembershipPersistanceAdapter implements RegisterMembershipPort {
+public class MembershipPersistanceAdapter implements RegisterMembershipPort, FindMembershipPort {
 
     private final SpringDataMembershipRepository springDataMembershipRepository;
 
@@ -29,4 +30,11 @@ public class MembershipPersistanceAdapter implements RegisterMembershipPort {
                 )
         );
     }
+
+    @Override
+    public MembershipJpaEntity findMembership(Membership.MembershipId membershipId) {
+        springDataMembershipRepository.getReferenceById(Long.parseLong(membershipId.getMembershipId()));
+        return null;
+    }
+
 }
