@@ -13,7 +13,7 @@ docker {
     // 이미지 이름
     name rootProject.name+'-'+project.name+":"+version
     // 어떤 Dockerfile
-    dockerfile file('./Dockerfile')
+    dockerfile file('../Dockerfile')
     // 어떤 파일들을 Dockerfile에 복사할 것인가
     files tasks.bootJar.outputs.files
     // Dockerfile에 전달할 인자

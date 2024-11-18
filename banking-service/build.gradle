@@ -1,0 +1,63 @@
+plugins {
+    id("java")
+    id("org.springframework.boot") version "2.7.18"
+    id("io.spring.dependency-management") version "1.0.15.RELEASE"
+    id("com.palantir.docker") version "0.35.0"
+}
+
+group = "org.hyeongeol.banking"
+version = "1.0.0"
+
+docker {
+    print(tasks.bootJar.outputs.files)
+    // 이미지 이름
+    name rootProject.name+'-'+project.name+":"+version
+    // 어떤 Dockerfile
+    dockerfile file('../Dockerfile')
+    // 어떤 파일들을 Dockerfile에 복사할 것인가
+    files tasks.bootJar.outputs.files
+    // Dockerfile에 전달할 인자
+    buildArgs(['JAR_FILE': tasks.bootJar.outputs.files.singleFile.name])
+
+}
+
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Spring Boot
+    implementation("org.springframework.boot:spring-boot-starter")
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation ("org.springframework.boot:spring-boot-starter-validation")
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    implementation("javax.persistence:javax.persistence-api:2.2")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+
+    // Lombok
+    compileOnly("org.projectlombok:lombok")
+    annotationProcessor("org.projectlombok:lombok")
+
+    // JUnit
+    testImplementation(platform("org.junit:junit-bom:5.10.0"))
+    testImplementation("org.junit.jupiter:junit-jupiter")
+
+    // Swagger
+    implementation("io.springfox:springfox-boot-starter:3.0.0")
+
+    runtimeOnly("com.h2database:h2")
+
+}
+
+tasks.test {
+    useJUnitPlatform()
+}
+
+
+
+
