@@ -8,19 +8,27 @@ import lombok.Value;
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class RegisteredBankingAccount {
-    @Getter private final String registeredBankingAccountId; // 뱅킹id
-    @Getter private final String membershipId; // 멤버id
-    @Getter private final String bankName; // 은행명
-    @Getter private final String bankAccountNumber; // 계좌번호
-    @Getter private final Boolean linkedStatusValid; // 계좌가 정상인지?
+    private final String registeredBankingAccountId; // 뱅킹id
+    private final String membershipId; // 멤버id
+    private final String bankName; // 은행명
+    private final String bankAccountNumber; // 계좌번호
+    private final Boolean linkedStatusValid; // 계좌가 정상인지?
 
 
 
     public static RegisteredBankingAccount generateRegisteredBanckAccount (
-            RegisteredBankingAccount.RegisteredBankAccountId registeredBankAccountId;
+            RegisteredBankingAccount.RegisteredBankAccountId registeredBankAccountId,
+            RegisteredBankingAccount.MembershipId membershipId,
+            RegisteredBankingAccount.BankName bankName,
+            RegisteredBankingAccount.BankAccountNumber bankAccountNumber,
+            RegisteredBankingAccount.LinkedStatusValid linkedStatusValid
     ){
         return new RegisteredBankingAccount(
-                registeredBankingAccountId.registeredBankAccountId
+                registeredBankAccountId.registeredBankAccountId,
+                membershipId.membershipId,
+                bankName.bankName,
+                bankAccountNumber.bankAccountNumber,
+                linkedStatusValid.linkedStatusValid
         );
     }
 
@@ -59,7 +67,7 @@ public class RegisteredBankingAccount {
         public LinkedStatusValid(Boolean value) {
             this.linkedStatusValid = value;
         }
-        String linkedStatusValid;
+        Boolean linkedStatusValid;
     }
 
 
